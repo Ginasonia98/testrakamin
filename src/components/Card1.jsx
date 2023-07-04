@@ -1,10 +1,10 @@
 import React from "react";
 import { RiCheckLine } from "react-icons/ri";
-import { FiMoreHorizontal,FiPlus } from "react-icons/fi";
+import { FiMoreHorizontal, FiPlus } from "react-icons/fi";
 
 const Card1 = () => {
   return (
-    <div className="w-72 h-full p-4 border border-gray-300 rounded-lg shadow-md">
+    <div className="w-72 h-full p-4 border border-cyan-300 rounded-lg shadow-md">
       <button className="w-32 text-sm border border-cyan-400 text-cyan-400">
         <h2 className="text-lg font-bold">Group Task 1</h2>
       </button>
@@ -49,15 +49,13 @@ const Card1 = () => {
           </div>
         </div>
       </div>
-      <div>
+      <div className="flex items-center">
         <button className="w-5 h-5 items-center rounded-full border border-black bg-white ml-2 text-black">
           <span className="flex items-center justify-center">
-            <FiPlus/>
+            <FiPlus />
           </span>
         </button>
-        <span className="text-black ml-2  items-center">
-        New Task
-        </span>
+        <span className="text-black ml-2 items-center">New Task</span>
       </div>
     </div>
   );
