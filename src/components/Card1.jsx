@@ -1,174 +1,91 @@
-import React, { useState } from 'react';
-import { RiCheckLine } from 'react-icons/ri';
-import { FiMoreHorizontal, FiPlus } from 'react-icons/fi';
+// Card1.js
+import React, { useState } from "react";
+import { Droppable, Draggable } from "react-beautiful-dnd";
+import Card from "./Card";
 
-const Card1 = () => {
-  const [isModalOpen, setModalOpen] = useState(false);
-  const [id, setId] = useState('');
-  const [title, setTitle] = useState('');
-  const [createdBy, setCreatedBy] = useState('');
-  const [createdAt, setCreatedAt] = useState('');
-  const [updatedAt, setUpdatedAt] = useState('');
+const Card1 = ({ id }) => {
+  const [showAddModal, setShowAddModal] = useState(false);
+  const [showMoreOptionsIndex, setShowMoreOptionsIndex] = useState(null);
+  const [taskName, setTaskName] = useState("");
+  const [progress, setProgress] = useState("");
 
-  const handleEditClick = () => {
-    setModalOpen(true);
+  const handleOpenAddModal = () => {
+    setShowAddModal(true);
   };
 
-  const handleCloseModal = () => {
-    setModalOpen(false);
+  const handleCloseAddModal = () => {
+    setShowAddModal(false);
   };
+
+  const handleOpenMoreOptions = (index) => {
+    setShowMoreOptionsIndex(index);
+  };
+
+  const handleCloseMoreOptions = () => {
+    setShowMoreOptionsIndex(null);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Handle form submission logic here
+    console.log(taskName, progress);
+    // Reset form data
+    setTaskName("");
+    setProgress("");
+    // Close the add modal
+    setShowAddModal(false);
+  };
+
+  const dummies = [
+    {
+      id: "card-1",
+      title: "Re-designed the zero-g doggie bags. No more spills!",
+      progress: 100,
+    },
+    {
+      id: "card-2",
+      title: "Bundle interplanetary analytics for improved transmission",
+      progress: 30,
+    },
+  ];
 
   return (
-    <div className="w-72 h-full p-4 border border-cyan-300 rounded-lg shadow-md">
-      <button className="w-32 text-sm border border-cyan-400 text-cyan-400">
-        <h2 className="text-lg font-bold">Group Task 1</h2>
-      </button>
-      <p className="text-sm mt-4 mb-2 text-black">January-March</p>
-
-      <div className="mb-4 border border-gray-200">
-        <div className="flex items-center mb-2">
-          <p className="text-sm font-medium ml-2">
-            Re-designed the zero-g doggie bags. No more spills!
-          </p>
-        </div>
-        <div className="border-dotted border-b mt-2"></div>
-        <div className="flex items-center mb-3">
-          <button className="w-44 h-4 mt-2 ml-1 rounded-full bg-green-800"></button>
-          <button className="w-5 h-5 mt-2 rounded-full bg-green-800 ml-2 text-white">
-            <span className="flex items-center justify-center">
-              <RiCheckLine />
-            </span>
-          </button>
-          <div className="text-gray-400 ml-2 mt-2">
-            <FiMoreHorizontal />
-          </div>
-        </div>
-      </div>
-
-      <div className="mb-4 border border-gray-200">
-        <div className="flex items-center mb-2">
-          <p className="text-sm font-medium ml-2">
-            Bundle interplanetary analytics for improved transmission
-          </p>
-        </div>
-        <div className="border-dotted border-b mt-2"></div>
-        <div className="flex items-center mb-3">
-          <div className="w-44 h-4 mt-2 ml-1 rounded-full bg-gray-200">
-            <div className="w-14 h-4 rounded-full bg-cyan-500"></div>
-          </div>
-          <span className="flex items-center justify-center text-gray-500 ml-1 mt-2">
-            30%
-          </span>
-          <div className="text-gray-400 ml-2 mt-2">
-            <FiMoreHorizontal />
-          </div>
-        </div>
-      </div>
-
-      <div className="flex items-center">
-        <button className="w-5 h-5 items-center rounded-full border border-black bg-white ml-2 text-black">
-          <span className="flex items-center justify-center">
-            <FiPlus />
-          </span>
-        </button>
-        <span className="text-black ml-2 items-center">New Task</span>
-
-        <button
-          className="w-12 h-6 bg-green-800 items-center  ml-2 text-white"
-          onClick={handleEditClick}
+    <Droppable droppableId={id}>
+      {(provided) => (
+        <div
+          {...provided.droppableProps}
+          ref={provided.innerRef}
+          className="w-72 h-full p-4 border border-cyan-300 rounded-lg shadow-md"
         >
-          <span className="flex items-center justify-center">Edit</span>
-        </button>
+          <button className="w-32 text-sm border border-cyan-400 text-cyan-400">
+            <h2 className="text-lg font-bold">Group Task 1</h2>
+          </button>
+          <p className="text-sm mt-4 mb-2 text-black">January-March</p>
 
-        <button className="w-12 h-6 bg-red-800 items-center ml-6 text-white">
-          <span className="flex items-center justify-center">Delete</span>
-        </button>
-      </div>
+          {dummies.map((card, index) => (
+            <Draggable draggableId={card.id} index={index} key={card.id}>
+              {(provided) => (
+                <div
+                  ref={provided.innerRef}
+                  {...provided.draggableProps}
+                  {...provided.dragHandleProps}
+                >
+                  <Card
+                    id={card.id}
+                    title={card.title}
+                    progress={card.progress}
+                  />
+                </div>
+              )}
+            </Draggable>
+          ))}
+          {provided.placeholder}
 
-      {isModalOpen && (
-        <div className="fixed inset-0 bg-gray-500 bg-opacity-50 flex justify-center items-center">
-          <div className="bg-white p-4 rounded-lg">
-            <h2 className="text-lg font-bold">Edit Task</h2>
-            <div className="mt-4">
-              <label htmlFor="id" className="block font-medium mb-1">
-                ID:
-              </label>
-              <input
-                type="text"
-                id="id"
-                value={id}
-                onChange={(e) => setId(e.target.value)}
-                className="w-full border-gray-300 rounded-md p-2"
-              />
-            </div>
-            <div className="mt-4">
-              <label htmlFor="title" className="block font-medium mb-1">
-                Title:
-              </label>
-              <input
-                type="text"
-                id="title"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                className="w-full border-gray-300 rounded-md p-2"
-              />
-            </div>
-            <div className="mt-4">
-              <label htmlFor="createdBy" className="block font-medium mb-1">
-                Created By:
-              </label>
-              <input
-                type="text"
-                id="createdBy"
-                value={createdBy}
-                onChange={(e) => setCreatedBy(e.target.value)}
-                className="w-full border-gray-300 rounded-md p-2"
-              />
-            </div>
-            <div className="mt-4">
-              <label htmlFor="createdAt" className="block font-medium mb-1">
-                Created At:
-              </label>
-              <input
-                type="text"
-                id="createdAt"
-                value={createdAt}
-                onChange={(e) => setCreatedAt(e.target.value)}
-                className="w-full border-gray-300 rounded-md p-2"
-              />
-            </div>
-            <div className="mt-4">
-              <label htmlFor="updatedAt" className="block font-medium mb-1">
-                Updated At:
-              </label>
-              <input
-                type="text"
-                id="updatedAt"
-                value={updatedAt}
-                onChange={(e) => setUpdatedAt(e.target.value)}
-                className="w-full border-gray-300 rounded-md p-2"
-              />
-            </div>
-            <div className="mt-4 flex justify-end">
-              <button
-                className="px-4 py-2 bg-gray-300 rounded-lg text-white font-medium"
-                onClick={handleCloseModal}
-              >
-                Close
-              </button>
-              <button
-                className="px-4 py-2 bg-blue-500 rounded-lg text-white font-medium ml-4"
-                onClick={handleCloseModal}
-              >
-                Save
-              </button>
-            </div>
-          </div>
+          {/* Rest of the code */}
         </div>
       )}
-    </div>
+    </Droppable>
   );
 };
 
 export default Card1;
-

@@ -1,17 +1,14 @@
-import React, { useState } from 'react';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import Button from './components/Button';
-import Card1 from './components/Card1';
-import Card2 from './components/Card2';
-import Card3 from './components/Card3';
-import Card4 from './components/Card4';
+import React, { useState } from "react";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import Button from "./components/Button";
+import Card1 from "./components/Card1";
 
 const App = () => {
   const [cards, setCards] = useState([
-    { id: 'card1', component: <Card1 /> },
-    { id: 'card2', component: <Card2 /> },
-    { id: 'card3', component: <Card3 /> },
-    { id: 'card4', component: <Card4 /> },
+    { id: "card-1", component: <Card1 id={"card1"} /> },
+    { id: "card-2", component: <Card1 id={"card2"} /> },
+    { id: "card-3", component: <Card1 id={"card3"} /> },
+    { id: "card-4", component: <Card1 id={"card4"} /> },
   ]);
 
   const handleDragEnd = (result) => {
@@ -35,7 +32,7 @@ const App = () => {
       <hr className="mt-4" />
       <div className="flex flex-col items-center">
         <DragDropContext onDragEnd={handleDragEnd}>
-          <Droppable droppableId="cards">
+          <Droppable droppableId="ROOT" type="group">
             {(provided) => (
               <div
                 className="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 xxl:grid-cols-4 gap-4"
@@ -66,20 +63,3 @@ const App = () => {
 };
 
 export default App;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
