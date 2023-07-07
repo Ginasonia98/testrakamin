@@ -7,13 +7,7 @@ import {
   FiTrash,
 } from "react-icons/fi";
 
-const Card = ({
-  id,
-  title,
-  progress,
-  handleOpenMoreOptions,
-  showMoreOptionsIndex,
-}) => {
+const Card = ({ id, title, progress }) => {
   return (
     <div className="relative rounded-md mb-4 border border-gray-200">
       <div className="flex items-center mb-2">
@@ -48,32 +42,20 @@ const Card = ({
             </div>
           )}
           <div className="text-gray-400 ml-2 mt-2">
-            <FiMoreHorizontal onClick={() => handleOpenMoreOptions(id)} />
+            <div className="flex items-center">
+              <FiArrowRight className="mr-1" />
+              <span className="mr-1">Move Right</span>
+              <FiEdit className="mr-1" />
+              <span className="mr-1">Edit</span>
+              <FiTrash className="mr-1" />
+              <span>Delete</span>
+            </div>
           </div>
         </div>
       </div>
-      {showMoreOptionsIndex === id && (
-        <div className="absolute z-50 -right-32 -bottom-32">
-          <div className="bg-white rounded-md shadow-md w-full max-w-xs mx-auto">
-            <ul className="py-1">
-              <li className="flex items-center px-4 py-2 hover:bg-gray-100 cursor-pointer text-base">
-                <FiArrowRight className="mr-2" />
-                <span className="mr-4">Move Right</span>
-              </li>
-              <li className="flex items-center px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                <FiEdit className="mr-2" />
-                <span className="mr-4">Edit</span>
-              </li>
-              <li className="flex items-center px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                <FiTrash className="mr-2" />
-                <span>Delete</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      )}
     </div>
   );
 };
 
 export default Card;
+

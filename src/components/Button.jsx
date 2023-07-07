@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import { RiAddLine } from 'react-icons/ri';
-import Card1 from './Card1';
+import React, { useState } from "react";
+import { RiAddLine } from "react-icons/ri";
+import Card from "./Card";
 
 const Button = () => {
   const [showModal, setShowModal] = useState(false);
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
   const [cards, setCards] = useState([]);
 
   const handleOpenModal = () => {
@@ -14,8 +14,8 @@ const Button = () => {
 
   const handleCloseModal = () => {
     setShowModal(false);
-    setTitle('');
-    setDescription('');
+    setTitle("");
+    setDescription("");
   };
 
   const handleSubmit = (e) => {
@@ -29,8 +29,8 @@ const Button = () => {
     // Add the new card to the existing cards array
     setCards([...cards, newCard]);
     // Reset form data
-    setTitle('');
-    setDescription('');
+    setTitle("");
+    setDescription("");
     // Close the add modal
     setShowModal(false);
   };
@@ -38,7 +38,9 @@ const Button = () => {
   return (
     <div>
       <div className="flex items-center">
-        <p className="text-black font-semibold text-sm ml-4 mr-2">Product Roadmap</p>
+        <p className="text-black font-semibold text-sm ml-4 mr-2">
+          Product Roadmap
+        </p>
         <button
           className="w-36 h-7 rounded-lg bg-cyan-500 text-white border-none mt-2 flex items-center"
           onClick={handleOpenModal}
@@ -51,7 +53,9 @@ const Button = () => {
       {showModal && (
         <div className="fixed inset-0 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg shadow-lg p-6 max-w-md">
-            <h2 className="text-lg font-bold mb-4 text-gray-800">Add New Group</h2>
+            <h2 className="text-lg font-bold mb-4 text-gray-800">
+              Add New Group
+            </h2>
             <form onSubmit={handleSubmit}>
               <div className="mb-4 text-gray-800">
                 <label htmlFor="title" className="text-sm font-medium">
@@ -97,22 +101,31 @@ const Button = () => {
         </div>
       )}
 
-      {cards.map((card) => (
-        <div key={card.id} className="mt-4">
-          <Card1 id={card.id} title={card.title} progress={card.progress} />
+      <div className="flex justify-center  ">
+        <div className="flex flex-wrap">
+          {cards.map((card, index) => (
+            <div
+              key={card.id}
+              className="w-72 h-full p-4 border border-cyan-300 rounded-lg shadow-md mr-4 mb-4"
+            >
+              <button className="w-32 text-sm border border-cyan-400 text-cyan-400">
+                <h2 className="text-lg font-bold">Group Task {index + 1}</h2>
+              </button>
+              <p className="text-sm mt-4 mb-2 text-black">January-March</p>
+
+              <Card
+                id={card.id}
+                title={card.title}
+                progress={card.progress}
+                handleOpenMoreOptions={() => {}}
+                showMoreOptionsIndex={-1}
+              />
+            </div>
+          ))}
         </div>
-      ))}
+      </div>
     </div>
   );
 };
 
 export default Button;
-
-
-
-
-
-
-
-
-
