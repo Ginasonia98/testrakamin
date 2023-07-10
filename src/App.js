@@ -1,21 +1,114 @@
-import React from 'react';
-import Button from './components/Button';
-import Card1 from './components/Card1';
+import { useCallback, useEffect, useState } from "react";
+import { DndProvider } from "react-dnd";
+import Column from "./components/Columns";
+import { HTML5Backend } from "react-dnd-html5-backend";
+import Button from "./components/Button";
+import Modal from "./components/Modal";
+import Task from "./components/Task";
 
 const App = () => {
+  const [tasks, setTasks] = useState([
+    // { id: 1, name: "Task 1", position: "Column 1", progress: 50 },
+    // { id: 2, name: "Task 2", position: "Column 2", progress: 100 },
+    // { id: 3, name: "Task 3", position: "Column 3", progress: 10 },
+    // { id: 4, name: "Task 4", position: "Column 4", progress: 90 },
+  ]);
+  const [currentPosition, setCurrentPosition] = useState("");
+  const [columns, setColumns] = useState([]);
+
+  const handleDrop = (taskId, targetCol) => {
+    const updatedTasks = tasks.map((task) =>
+      task.id === taskId ? { ...task, position: targetCol } : task
+    );
+    setTasks(updatedTasks);
+  };
+
+  const [showModal, setShowModal] = useState(false);
+  const [showTaskModal, setShowTaskModal] = useState(false);
+
+  const handleOpenModal = () => {
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+
+  const handleOpenTaskModal = () => {
+    setShowTaskModal(true);
+  };
+
+  const handleCloseTaskModal = () => {
+    setShowTaskModal(false);
+  };
+
+  const handleSubmitModal = (title, description) => {
+    columns.push({
+      title,
+      description,
+    });
+  };
+
+  const handleCreateTask = useCallback(
+    (name, progress) => {
+      const tasksList = [...tasks];
+      const newTask = {
+        id: tasksList.length,
+        name,
+        progress,
+        position: currentPosition,
+      };
+      tasksList.push(newTask);
+      setTasks(tasksList);
+      setCurrentPosition("");
+    },
+    [currentPosition, tasks]
+  );
+
+  useEffect(() => {
+    if (currentPosition) {
+      handleOpenTaskModal();
+    } else {
+      handleCloseTaskModal();
+    }
+  }, [currentPosition]);
+
   return (
-    <div>
-      <Button />
-      <hr className="mt-4" />
-      <div className="flex flex-col items-center">
-        <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 xxl:grid-cols-4 gap-4">
-          <Card1 id="card-1" title="Re-designed the zero-g doggie bags. No more spills!" progress={100} />
-          <Card1 id="card-2" title="Bundle interplanetary analytics for improved transmission" progress={30} />
+    <>
+      <Button createNewGroup={handleOpenModal} />
+      {showModal && (
+        <Modal
+          title="Add New Group"
+          onClose={handleCloseModal}
+          onSubmit={handleSubmitModal}
+        />
+      )}
+      {showTaskModal && (
+        <Task
+          title="Add New Task"
+          onClose={handleCloseTaskModal}
+          onSubmit={handleCreateTask}
+        />
+      )}
+      <DndProvider backend={HTML5Backend}>
+        <div className="container m-auto px-4 mt-4">
+          <div className="flex overflow-x-scroll">
+            {columns.map((column, index) => (
+              <Column
+                key={column.title}
+                title={column.title}
+                isEnd={index === columns.length - 1}
+                description={column.description}
+                tasks={tasks.filter((task) => task.position === column.title)}
+                onDrop={handleDrop}
+                setCurrentPosition={() => setCurrentPosition(column.title)}
+              />
+            ))}
+          </div>
         </div>
-      </div>
-    </div>
+      </DndProvider>
+    </>
   );
 };
 
 export default App;
-
