@@ -1,70 +1,30 @@
-# Getting Started with Create React App
+This is a React project created by Gina Sonia that utilizes various libraries and tools for a web application. The project includes React Icons for the icons used on the website, Tailwind CSS for styling, and React DnD for drag-and-drop functionality. The website has been deployed and can be accessed at https://testrakaminginasonia.vercel.app/. The corresponding GitHub repository can be found at https://github.com/Ginasonia98/testrakamin.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Technologies Used
+React
+React Icons
+Tailwind CSS
+React DnD
+Project Description
+This project is built using React, a popular JavaScript library for building user interfaces. It incorporates several libraries and tools to enhance the functionality and visual appearance of the web application.
 
-## Available Scripts
+React Icons
+React Icons is a collection of popular icon packs that can be easily integrated into a React application. It provides a wide range of icons to choose from, making it convenient to include visually appealing icons in your project.
 
-In the project directory, you can run:
+Tailwind CSS
+Tailwind CSS is a utility-first CSS framework that allows you to rapidly build custom user interfaces. It provides a set of pre-defined utility classes that can be applied to HTML elements, enabling quick and efficient styling. With Tailwind CSS, you can easily customize the appearance of your website without writing custom CSS.
 
-### `npm start`
+React DnD
+React DnD (Drag and Drop) is a powerful library for adding drag-and-drop functionality to your React application. It provides a set of components and hooks that simplify the process of creating draggable and droppable elements. With React DnD, you can easily implement features such as reordering lists or dragging items between different containers.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Deployment
+This web application has been deployed using Vercel, a platform for hosting static websites and serverless functions. You can access the deployed website at https://testrakaminginasonia.vercel.app/.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Repository
+The source code for this project is hosted on GitHub. You can find it at https://github.com/Ginasonia98/testrakamin. Feel free to explore the repository to view the code, submit issues, or contribute to the project.
 
-### `npm test`
+Contributing
+Contributions to this project are welcome. If you find any issues or would like to suggest improvements, please open an issue on the GitHub repository. You can also submit pull requests with proposed changes.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+License
+This project is licensed under the MIT License. Feel free to modify and use the code according to your needs.
